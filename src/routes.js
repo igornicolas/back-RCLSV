@@ -1,7 +1,11 @@
 import { Router } from 'express';
 
 // eslint-disable-next-line import/no-unresolved
-import { UserController, LoginController } from './app/controllers';
+import {
+  UserController,
+  LoginController,
+  RouteController,
+} from './app/controllers';
 
 const routes = new Router();
 routes.get('/', (req, res) => res.json({ status: { ok: true } }));
@@ -15,6 +19,10 @@ routes.get('/users', UserController.index);
 routes.post('/user', UserController.store);
 routes.delete('/user/:id', UserController.delete);
 routes.put('/user/:id', UserController.updateSecure);
+
+// routes
+routes.get('/routes', RouteController.index);
+routes.post('/route', RouteController.store);
 
 // routes.get('/users', UserController.index);
 

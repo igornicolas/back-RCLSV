@@ -22,6 +22,10 @@ class Citizen extends Model {
       foreignKey: 'user_id',
       as: 'user',
     });
+    this.belongsTo(models.User, {
+      foreignKey: 'location_id',
+      as: 'location',
+    });
   }
 }
 module.exports = Citizen;
