@@ -1,11 +1,11 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Truck extends Model {
+class Feedback extends Model {
   static init(sequelize) {
     super.init(
       {
-        plate: Sequelize.STRING,
-        route: Sequelize.TEXT,
+        description: Sequelize.TEXT,
+        user_id: Sequelize.INTEGER,
       },
       {
         sequelize,
@@ -21,4 +21,4 @@ class Truck extends Model {
     });
   }
 }
-module.exports = Truck;
+module.exports = Feedback;

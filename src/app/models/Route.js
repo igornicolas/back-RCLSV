@@ -15,8 +15,8 @@ class Route extends Model {
 
   static associate(models) {
     this.belongsToMany(models.Location, {
-      through: 'routes_locations',
-      foreignKey: 'routes_id',
+      through: 'route_locations',
+      foreignKey: 'route_id',
       as: 'location',
     });
   }

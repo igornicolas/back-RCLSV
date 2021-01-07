@@ -1,4 +1,4 @@
-import { User, Citizen, Truck } from '../models';
+import { User, Citizen, Truck, Location } from '../models';
 
 class UserController {
   async index(req, res) {
@@ -8,11 +8,16 @@ class UserController {
       include: [
         {
           model: Citizen,
-          attributes: ['id'],
+          attributes: ['id', 'notification', 'token'],
         },
         {
           model: Truck,
-          attributes: ['id'],
+          attributes: ['id', 'plate'],
+        },
+        {
+          model: Location,
+          attributes: ['id', 'latitude', 'longitude'],
+          as: 'location',
         },
       ],
     });
@@ -50,21 +55,31 @@ class UserController {
      * usar {id, name , email} ao inves de user
      * para retornar apenas as informacoes necessarias
      * */
-    const { name, surname, email, password, isWhat } = req.body;
-
+    const {
+      name,
+      surname,
+      email,
+      password,
+      isWhat,
+      latitude,
+      longitude,
+    } = req.body;
+    const location = await Location.create({ latitude, longitude });
+    const location_id = location.id;
     const user = await User.create({
       name,
       surname,
       email,
       password,
+      location_id,
     });
 
     if (isWhat === 'citizen') {
-      const { cpf, token, notification, latitude, longitude } = req.body;
-      user.createCitizen({ cpf, token, notification, latitude, longitude });
+      const { cpf, token, notification } = req.body;
+      user.createCitizen({ cpf, token, notification });
     } else if (isWhat === 'truck') {
-      const { plate, route, latitude, longitude } = req.body;
-      user.createTruck({ plate, route, latitude, longitude });
+      const { plate, route } = req.body;
+      user.createTruck({ plate, route });
     }
 
     return res.json(user);

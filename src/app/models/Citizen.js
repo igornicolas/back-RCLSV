@@ -7,8 +7,6 @@ class Citizen extends Model {
         cpf: Sequelize.STRING,
         token: Sequelize.STRING,
         notification: Sequelize.BOOLEAN,
-        latitude: Sequelize.STRING,
-        longitude: Sequelize.STRING,
       },
       {
         sequelize,
@@ -21,10 +19,6 @@ class Citizen extends Model {
     this.belongsTo(models.User, {
       foreignKey: 'user_id',
       as: 'user',
-    });
-    this.belongsTo(models.User, {
-      foreignKey: 'location_id',
-      as: 'location',
     });
   }
 }

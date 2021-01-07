@@ -28,14 +28,6 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      latitude: {
-        type: Sequelize.NUMERIC,
-        allowNull: true,
-      },
-      longitude: {
-        type: Sequelize.NUMERIC,
-        allowNull: true,
-      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

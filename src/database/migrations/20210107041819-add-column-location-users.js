@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) =>
-    queryInterface.addColumn('citizens', 'location_id', {
+    queryInterface.addColumn('users', 'location_id', {
       type: Sequelize.INTEGER,
       allowNull: true,
       references: { model: 'locations', key: 'id' },
@@ -8,6 +8,5 @@ module.exports = {
       onDelete: 'SET NULL',
     }),
 
-  down: (queryInterface) =>
-    queryInterface.removeColumn('citizens', 'location_id'),
+  down: (queryInterface) => queryInterface.removeColumn('users', 'location_id'),
 };

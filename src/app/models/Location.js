@@ -16,12 +16,11 @@ class Location extends Model {
 
   static associate(models) {
     this.hasOne(models.User, {
-      foreignKey: 'user_id',
-      as: 'user',
+      foreignKey: 'location_id',
     });
     this.belongsToMany(models.Route, {
-      through: 'routes_locations',
-      foreignKey: 'locations_id',
+      through: 'route_locations',
+      foreignKey: 'location_id',
       as: 'route',
     });
   }

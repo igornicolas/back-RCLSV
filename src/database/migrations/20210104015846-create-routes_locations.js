@@ -1,14 +1,14 @@
 module.exports = {
   up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('routes_locations', {
-      routes_id: {
+    queryInterface.createTable('route_locations', {
+      route_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'routes', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      locations_id: {
+      location_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'locations', key: 'id' },

@@ -37,7 +37,7 @@ class RouteController {
     const route = await Route.findByPk(req.params.id);
 
     if (!route) {
-      return res.status(400).json({ error: 'route not found' });
+      return res.status(400).json({ error: 'rota não encontrada!' });
     }
 
     const updatedroute = await route.update({ name });
@@ -49,7 +49,7 @@ class RouteController {
     const route = await Route.findByPk(req.params.id);
 
     if (!route) {
-      return res.status(400).json({ error: 'route not found' });
+      return res.status(400).json({ error: 'rota não encontrada!' });
     }
 
     route.destroy();

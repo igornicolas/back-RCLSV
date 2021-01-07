@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('trucks', {
+    queryInterface.createTable('feedbacks', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -9,18 +9,19 @@ module.exports = {
       },
       user_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      plate: {
+      /** Type_id? type = sugestão, problema, rota não realizada, lixo ainda na rua .
+       * type: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      route: {
+      }, */
+      description: {
         type: Sequelize.TEXT,
-        allowNull: true,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -32,5 +33,5 @@ module.exports = {
       },
     }),
 
-  down: (queryInterface) => queryInterface.dropTable('trucks'),
+  down: (queryInterface) => queryInterface.dropTable('feedbacks'),
 };

@@ -23,6 +23,8 @@ routes.put('/user/:id', UserController.updateSecure);
 // routes
 routes.get('/routes', RouteController.index);
 routes.post('/route', RouteController.store);
+routes.post('/route', RouteController.update);
+routes.post('/route', RouteController.delete);
 
 // routes.get('/users', UserController.index);
 

@@ -34,6 +34,10 @@ class User extends Model {
     this.hasOne(models.Truck, {
       foreignKey: 'user_id',
     });
+    this.belongsTo(models.Location, {
+      foreignKey: 'location_id',
+      as: 'location',
+    });
   }
 
   checkPassword(password) {
