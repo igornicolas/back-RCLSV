@@ -1,11 +1,10 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Feedback extends Model {
+class Complaint extends Model {
   static init(sequelize) {
     super.init(
       {
         description: Sequelize.TEXT,
-        user_id: Sequelize.INTEGER,
       },
       {
         sequelize,
@@ -19,6 +18,10 @@ class Feedback extends Model {
       foreignKey: 'user_id',
       as: 'user',
     });
+    this.belongsTo(models.TypeComplaint, {
+      foreignKey: 'type_id',
+      as: 'type',
+    });
   }
 }
-module.exports = Feedback;
+module.exports = Complaint;

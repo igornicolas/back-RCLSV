@@ -34,9 +34,13 @@ class User extends Model {
     this.hasOne(models.Truck, {
       foreignKey: 'user_id',
     });
+
     this.belongsTo(models.Location, {
       foreignKey: 'location_id',
       as: 'location',
+    });
+    this.hasOne(models.Complaint, {
+      foreignKey: 'user_id',
     });
   }
 
