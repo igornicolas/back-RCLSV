@@ -1,4 +1,4 @@
-import { Complaint, User, TypeComplaint } from '../models';
+import { Complaint, User, TypeComplaint, Location } from '../models';
 
 class ComplaintController {
   async index(req, res) {
@@ -9,10 +9,17 @@ class ComplaintController {
         {
           model: TypeComplaint,
           as: 'type',
+          attributes: ['name'],
         },
         {
           model: User,
+          attributes: ['name'],
           as: 'user',
+        },
+        {
+          model: Location,
+          attributes: ['latitude', 'longitude'],
+          as: 'location',
         },
       ],
     });
@@ -22,7 +29,14 @@ class ComplaintController {
 
   async store(req, res) {
     // when token is active remove the user_id
-    const { description, type_id, anonymous, user_id } = req.body;
+    const {
+      description,
+      type_id,
+      anonymous,
+      user_id,
+      latitude,
+      longitude,
+    } = req.body;
     let type = null;
 
     if (!type_id) {
@@ -41,7 +55,10 @@ class ComplaintController {
 
       await complaint.setUser(user);
     }
-
+    if (latitude && longitude) {
+      const location = await Location.create({ latitude, longitude });
+      await complaint.setLocation(location);
+    }
     return res.json(complaint);
   }
 

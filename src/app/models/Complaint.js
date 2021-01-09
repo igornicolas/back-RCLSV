@@ -22,6 +22,10 @@ class Complaint extends Model {
       foreignKey: 'type_id',
       as: 'type',
     });
+    this.belongsTo(models.Location, {
+      foreignKey: 'location_id',
+      as: 'location',
+    });
   }
 }
 module.exports = Complaint;

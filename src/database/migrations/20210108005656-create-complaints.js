@@ -14,11 +14,25 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      /** Type_id? type = sugestão, problema, rota não realizada, lixo ainda na rua .
-       * type: {
-        type: Sequelize.STRING,
+      type_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-      }, */
+        references: { model: 'type_complaints', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
+      /**   deveria ter localização,
+       * ou usar a localizacao cadastrada do
+       * usuario como padrao? :thonk:
+       * */
+      location_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { model: 'locations', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
+
       description: {
         type: Sequelize.TEXT,
         allowNull: false,

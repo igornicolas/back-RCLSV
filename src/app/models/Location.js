@@ -18,6 +18,9 @@ class Location extends Model {
     this.hasOne(models.User, {
       foreignKey: 'location_id',
     });
+    this.hasOne(models.Complaint, {
+      foreignKey: 'location_id',
+    });
     this.belongsToMany(models.Route, {
       through: 'route_locations',
       foreignKey: 'location_id',
